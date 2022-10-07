@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <Notification :error="true" :msg="msg"></Notification>
+  <div v-if="!error">
     <div class="field">
       <label for="" class="label">Name</label>
       <div class="control">
@@ -33,11 +34,16 @@
   import axios from "axios";
   //import store
   import {useAuthStore} from "@/store";
+  import Notification from "@/components/Notification";
 
   export default {
 
+    components: {Notification},
+
     data() {
       return {
+        msg: '',
+        error: false,
         name: "",
         price: ""
       }
@@ -64,6 +70,8 @@
           this.price = response.data.price;
         } catch (err) {
           console.log(err);
+          this.error = true;
+          this.msg = err;
         }
       },
 
@@ -87,6 +95,8 @@
           this.$router.push("/");
         } catch (err) {
           console.log(err);
+          this.error = true;
+          this.msg = err;
         }
       }
     }

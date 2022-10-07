@@ -1,8 +1,5 @@
 <template>
-  <div v-if="msg" class="notification" v-bind:class="[error ? 'is-danger' : 'is-primary']">
-    <button class="delete" v-on:click="closeNotification"></button>
-    {{ msg }}
-  </div>
+  <Notification :error="error" :msg="msg"></Notification>
   <div v-if="!error">
     <router-link :to="{name: 'create'}" class="button is-success mt-5"> Add New</router-link>
     <table class="table is-striped is-bordered mt-2 is-fullwidth">
@@ -36,8 +33,10 @@
 import axios from "axios";
 //import store
 import {useAuthStore} from "@/store";
+import Notification from "@/components/Notification";
 
 export default {
+  components: {Notification},
 
   data() {
     return {
@@ -95,11 +94,6 @@ export default {
       }
     },
 
-    closeNotification(event) {
-
-      const $notification = event.target.parentNode;
-      $notification.parentNode.removeChild($notification);
-    }
   }
 }
 </script>

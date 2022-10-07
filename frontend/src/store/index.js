@@ -27,24 +27,6 @@ export const useAuthStore = defineStore({
                     console.log(err);
                 }
             }
-        },
-
-        async getToken2() {
-            if(this.token2 == null) {
-                try {
-                    const response = await axios.post(
-                        "http://localhost:8000/token/",
-                        {
-                            username:'apiuser',
-                            password:'BU8u71iRgT'
-                        }
-                    );
-                    this.token2 = response.data.token;
-                } catch (err) {
-                    console.log(err);
-                }
-            }
-
         }
     }
 })
