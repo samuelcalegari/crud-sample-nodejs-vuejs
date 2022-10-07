@@ -60,7 +60,7 @@ export default {
 
       try {
         const response = await axios.get(
-            "http://localhost:8000/products",
+            process.env.VUE_APP_API_ENDPOINT + "/products",
             {
               headers: {"Authorization": `Bearer ${authStore.token}`}
             }
@@ -82,7 +82,7 @@ export default {
         await authStore.getToken();
 
         await axios.delete(
-            "http://localhost:8000/products/" + id,
+            process.env.VUE_APP_API_ENDPOINT + "/products/" + id,
             {
               headers: {"Authorization": `Bearer ${authStore.token}`}
             });

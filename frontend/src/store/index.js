@@ -16,7 +16,7 @@ export const useAuthStore = defineStore({
             if(this.token == null) {
                 try {
                     const response = await axios.post(
-                        "http://localhost:8000/token/",
+                        process.env.VUE_APP_API_ENDPOINT + "/token/",
                         {
                             username:'apiuser',
                             password:'BU8u71iRgT'

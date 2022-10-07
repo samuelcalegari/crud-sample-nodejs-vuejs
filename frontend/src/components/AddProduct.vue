@@ -57,7 +57,7 @@
           const authStore = useAuthStore();
           await authStore.getToken();
           await axios.post(
-              "http://localhost:8000/products",
+              process.env.VUE_APP_API_ENDPOINT + "/products",
               {
                 name: this.name,
                 price: this.price },

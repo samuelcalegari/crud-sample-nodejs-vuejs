@@ -61,7 +61,7 @@
           const authStore = useAuthStore();
           await authStore.getToken();
           const response = await axios.get(
-              "http://localhost:8000/products/" + this.$route.params.id,
+              process.env.VUE_APP_API_ENDPOINT + "/products/" + this.$route.params.id,
               {
                 headers: {"Authorization": `Bearer ${authStore.token}`}
               }
@@ -81,7 +81,7 @@
           const authStore = useAuthStore();
           await authStore.getToken();
           const response = await axios.put(
-              "http://localhost:8000/products/" + this.$route.params.id,
+              process.env.VUE_APP_API_ENDPOINT + "/products/" + this.$route.params.id,
               {
                 name:this.name,
                 price:this.price
