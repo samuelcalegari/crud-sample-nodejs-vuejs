@@ -31,20 +31,34 @@
 <script>
   //import axios
   import axios from "axios";
+  //import store
+  import {useAuthStore} from "@/store";
+
   export default {
+
     data(){
       return{
         name : "",
         price : ""
       }
     },
+
     methods : {
+
       async saveProduct() {
+
         try {
-          await axios.post("http://localhost:8000/products", {
-            name: this.name,
-            price: this.price
-          });
+          const authStore = useAuthStore();
+          await authStore.getToken();
+          await axios.post(
+              "http://localhost:8000/products",
+              {
+                name: this.name,
+                price: this.price },
+              {
+                headers: {"Authorization": `Bearer ${authStore.token}`}
+              }
+          );
           this.name = "";
           this.price = "";
           this.$router.push("/")

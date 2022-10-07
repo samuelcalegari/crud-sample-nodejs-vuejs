@@ -1,8 +1,10 @@
 <template>
-  <nav>
-  </nav>
   <router-view/>
 </template>
+
+<script>
+  export default {}
+</script>
 
 <style>
 @import "~bulma/css/bulma.css";

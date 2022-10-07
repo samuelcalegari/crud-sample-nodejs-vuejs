@@ -1,6 +1,9 @@
 //import express
 import express from "express";
 
+//import middleware
+import auth from "../middleware/auth.js"
+
 //import functions from controller
 import {
     showProducts,
@@ -11,11 +14,15 @@ import {
 
 } from "../controllers/product.js"
 
+import {
+    getToken, refreshToken
+} from "../controllers/auth.js"
+
 //init express router
 const router =  express.Router();
 
 //get all product
-router.get("/products", showProducts);
+router.get("/products", auth, showProducts);
 
 //get single product
 router.get("/products/:id", showProductsById);
@@ -27,7 +34,13 @@ router.post("/products", createProduct);
 router.put("/products/:id", updateProduct);
 
 //delete product
-router.delete("/products/:id", deleteProduct);
+router.delete("/products/:id", auth, deleteProduct);
+
+//get token
+router.post("/token", getToken);
+
+//refresh token
+router.post("/refresh", refreshToken);
 
 //export default router
 export default router;
