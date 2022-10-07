@@ -25,13 +25,13 @@ const router =  express.Router();
 router.get("/products", auth, showProducts);
 
 //get single product
-router.get("/products/:id", showProductsById);
+router.get("/products/:id", auth, showProductsById);
 
 //create new product
-router.post("/products", createProduct);
+router.post("/products", auth, createProduct);
 
 //update product
-router.put("/products/:id", updateProduct);
+router.put("/products/:id", auth, updateProduct);
 
 //delete product
 router.delete("/products/:id", auth, deleteProduct);
